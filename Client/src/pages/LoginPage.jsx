@@ -1,13 +1,12 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { userContext } from '../contexts/userContext'
 const LoginPage = () => {
   const { setUser } = useContext(userContext)
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const [redirect, setRedirect] = useState(false)
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault()
@@ -19,17 +18,14 @@ const LoginPage = () => {
       const data = await response.data
       if (data) {
         setUser(data)
-        setRedirect(true)
+        window.location.href="/"
       }
     } catch (error) {
       window.alert(error.response.data.message)
     }
   }
 
-  if (redirect) {
-    return <Navigate to={'/'} />
-  }
-
+ 
   return (
     <div className="mt-4 grow flex items-center justify-around  ">
       <div className="mb-32 p-8 border border-gray-100 rounded-3xl shadow-xl">
