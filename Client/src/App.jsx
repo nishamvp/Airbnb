@@ -17,6 +17,7 @@ import PlaceFormPage from './pages/PlaceFormPage'
 import React from 'react'
 import PlacePage from './pages/PlacePage'
 import BookingsPage from './pages/BookingsPage'
+import BookingPage from './pages/BookingPage'
 axios.defaults.baseURL = 'http://192.168.166.108:3000'
 axios.defaults.withCredentials = true
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
         <Route path="/account/places/new" element={<PlaceFormPage />} />
         <Route path="/account/places/new/:id" element={<PlaceFormPage />} />
         <Route path="/account/bookings/" element={<BookingsPage />} />
+        <Route path="/account/bookings/:id" element={<BookingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>

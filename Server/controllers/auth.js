@@ -289,12 +289,29 @@ export const bookedPlaces = (req, res) => {
     const { token } = req.cookies;
     if (token) {
       jwt.verify(token, process.env.SECRET_KEY, async (err, userData) => {
-        const bookingsDoc = await Booking.find({user:userData._id}).populate('place')
-        res.status(200).json(bookingsDoc)
-      })}
-   
+        const bookingsDoc = await Booking.find({ user: userData._id }).populate(
+          "place"
+        );
+        res.status(200).json(bookingsDoc);
+      });
+    }
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
+};
 
+export const bookedPlace = async (req,res) =>{
+  try {
+    const {id} = req.params
+    const {token} =req.cookies
+    if(token){
+      jwt.verify(token,process.env.SECRET_KEY,async(err,userData)=>{
+        const BookedPlaceDoc=  await Booking.findById(id).populate('place')
+        res.status(200).json(BookedPlaceDoc)
+      })
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+
+  }
 }

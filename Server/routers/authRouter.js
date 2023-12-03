@@ -13,6 +13,7 @@ import {
   singlePlace,
   bookPlace,
   bookedPlaces,
+  bookedPlace,
 } from "../controllers/auth.js";
 import verifyToken from "../middleware/auth.js";
 
@@ -30,6 +31,7 @@ router.get("/allplaces", getAllPlaces);
 router.get("/place/:id", getPlaceById);
 router.post("/book-place" ,bookPlace)
 router.get("/booked-places" ,bookedPlaces)
+router.get("/booked-place/:id" ,bookedPlace)
 router.put("/place", updatePlace);
 
 export default router;
